@@ -4,7 +4,7 @@ USER 0
 
 WORKDIR /app
 
-RUN microdnf install -y gcc gcc-c++ make \
+RUN microdnf install -y gcc gcc-c++ make file-libs unixODBC \
     && microdnf clean all
 
 RUN python -m venv /app/venv
