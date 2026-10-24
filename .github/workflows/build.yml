@@ -1,0 +1,13 @@
+name: build-image
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t python312-django:1.0 .
+      - run: docker save python312-django:1.0 | gzip > python312-django.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: python312-django-image
+          path: python312-django.tar.gz
